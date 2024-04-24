@@ -69,18 +69,21 @@
             studentId.value;
         }).catch((error) =>{
             alert("Error occuring while saving data");
+                    console.log(studentDetails)
         });
-        console.log(studentDetails)
 
 
-        let StudentsArray = []
-        window.onload = function () {
-            // Retrieve data from Firebase database
-            onValue(ref(DB, "StdnReg/"), (studentsData) =>{
-                const data = studentsData.val();
-                console.log("All Students", data)
-            })
-        }
+        let StdnArray = [];
+       let GetStdn = () => {
+        onValue(ref(DB, "StdnReg/"), (data) => {
+            let allStdn = data.val();
+            console.log("All Students : ", allStdn);
+        StdnArray = Object.keys(allStdn).map()
+        });
+       };
+
+       GetStdn();
+
 
         screen.innerHTML = `
         <div class="col-11 col-md-8 col-lg-6 mx-auto mt-5 rounded-3 p-3 shadow">
