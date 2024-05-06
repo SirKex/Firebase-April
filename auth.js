@@ -33,31 +33,31 @@ const auth = getAuth(app);
 //  Initialize Google Authentication and get a reference to the service
 const provider = new GoogleAuthProvider();
 
-// let signUpWithemailandpass = document.getElementById("studentDetails");
-// signUpWithemailandpass.addEventListener("click", function () {
-//   let email = document.getElementById("email").value;
-//   let password = document.getElementById("password").value;
+let signUpWithemailandpass = document.getElementById("studentDetails");
+signUpWithemailandpass.addEventListener("click", function () {
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
 
-//   createUserWithEmailAndPassword(auth, email, password)
-//     .then((userCredential) => {
-//       // Signed up
-//       const user = userCredential.user;
-//       console.log("User Info : ", user);
-//       alert("User signed up successfully");
-//       window.location.href = "signin.html";
-//     })
-//     .catch((error) => {
-//       if (error.code === "auth/email-already-in-use") {
-//         alert("Email already in use");
-//       } else if (error.code === "auth/invalid-email") {
-//         alert("Invalid Email");
-//       } else if (error.code === "auth/weak-password") {
-//         alert("Weak Password");
-//       } else {
-//         alert("Error : ", error.message);
-//       }
-//     });
-// });
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed up
+      const user = userCredential.user;
+      console.log("User Info : ", user);
+      alert("User signed up successfully");
+      window.location.href = "signin.html";
+    })
+    .catch((error) => {
+      if (error.code === "auth/email-already-in-use") {
+        alert("Email already in use");
+      } else if (error.code === "auth/invalid-email") {
+        alert("Invalid Email");
+      } else if (error.code === "auth/weak-password") {
+        alert("Weak Password");
+      } else {
+        alert("Error : ", error.message);
+      }
+    });
+});
 
 // Sign In Functoinalities :
 let subnBtn = document.getElementById("signinBtn");
@@ -76,32 +76,5 @@ subnBtn.addEventListener("click", function () {
             const errorMessage = error.message;
             alert("Error: " + errorMessage);
             console.log("error", errorMessage);
-        });
-});
-
-// Sign in with google
-let signWithGgl = document.getElementById("signWithGgl");
-
-signWithGgl.addEventListener("click", function () {
-    signInWithPopup(auth, provider)
-        .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
-            console.log("User Info : ", user);
-            // IdP data available using getAdditionalUserInfo(result)
-            // ...
-        })
-        .catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.customData.email;
-            // The AuthCredential type that was used.
-            const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
         });
 });
